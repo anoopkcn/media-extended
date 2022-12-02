@@ -418,17 +418,18 @@ export class MediaView extends FileView {
       /^00:/g,
       "",
     );
+    const displayInt = Math.floor(offsetCurrentTime).toString();
     if (isInternal(this.info)) {
       const linktext = this.app.metadataCache.fileToLinktext(
         this.info.getSrcFile(this.app.vault),
         sourcePath ?? "",
         true,
       );
-      return `[[${linktext}#t=${display}]]`;
+      return `[[${linktext}?t=${displayInt}]]`;
     } else
       return (
         `[${display.replace(/\.\d+$/, "")}]` +
-        `(${mainpart(this.info.src)}#t=${offsetCurrentTime})`
+        `(${mainpart(this.info.src)}?t=${displayInt})`
       );
   }
 
